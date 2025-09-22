@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Hasil Deteksi</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Warna tombol ungu */
+    .btn-ungu {
+      background-color: #6366f1; /* ungu seperti tombol Predict */
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      padding: 10px 25px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .btn-ungu:hover {
+      background-color: #4f46e5; /* ungu lebih gelap saat hover */
+      color: #fff;
+    }
+
+    /* Warna judul abu-ungu */
+    .judul-hasil {
+      color: #374151;
+      font-weight: 700;
+    }
+
+    /* Box container */
+    .box-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body style="background-color:#f9fafb;">
+  <div class="container mt-5">
+    <div class="box-container text-center">
+      <h4 class="judul-hasil mb-4">Hasil Informasi</h4>
+      <h1>🚫 Gambar tidak dikenali sebagai daun cabai</h1>
+      <p>Silakan unggah gambar daun cabai untuk mendapatkan hasil deteksi penyakit.</p>
+
+      {% if user_image %}
+        <img src="{{ url_for('static', filename=user_image.split('static/')[1]) }}" 
+             alt="Uploaded Image" 
+             class="img-fluid mt-3 mb-3" 
+             style="max-width:300px;">
+      {% endif %}
+
+      <form action="{{ url_for('predict') }}" method="get">
+        <button type="submit" class="btn-ungu">
+          Coba Lagi
+        </button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

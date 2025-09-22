@@ -179,7 +179,7 @@
                       <div class="row">
                           <!-- Input Image -->
                           <div class="col-lg-6 col-md-6 col-sm-12">
-                            <form action="/predict" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+                            <form action="/predict" method="post" enctype="multipart/form-data" onsubmit="return validateForm(event)">
                               <label for="input-image" class="form-label">Upload Image</label>
                               <div class="upload-container">
                                 <input type="file" name="image" class="form-control" id="input-image" accept="image/*">
@@ -190,7 +190,6 @@
                               </div>
                             </form>
                           </div>
-
                           <!-- Modal Warning -->
                           <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="warningLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -269,5 +268,19 @@
       });
     </script>
     
+
+    <!-- Script Validasi -->
+  <script>
+    function validateForm(event) {
+      const inputImage = document.getElementById("input-image");
+      if (!inputImage.value) {
+        event.preventDefault(); // cegah submit
+        const warningModal = new bootstrap.Modal(document.getElementById("warningModal"));
+        warningModal.show();
+        return false;
+      }
+      return true;
+    }
+  </script>
   </body>
 </html>
