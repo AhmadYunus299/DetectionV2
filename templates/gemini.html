@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-navbar-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../static/assets/" data-template="vertical-menu-template">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Leaf Detection</title>
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../static/assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="../static/assets/vendor/fonts/materialdesignicons.css" />
+    <link rel="stylesheet" href="../static/assets/vendor/fonts/fontawesome.css" />
+    <!-- Menu waves for no-customizer fix -->
+    <link rel="stylesheet" href="../static/assets/vendor/libs/node-waves/node-waves.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../static/assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../static/assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../static/assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../static/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../static/assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="../static/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
+    <link rel="stylesheet" href="../static/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+    <link rel="stylesheet" href="../static/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" />
+    <link rel="stylesheet" href="../static/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="../static/assets/vendor/js/helpers.js"></script>
+
+    <!-- Template customizer & Theme config files -->
+    <script src="../static/assets/vendor/js/template-customizer.js"></script>
+    <script src="../static/assets/js/config.js"></script>
+</head>
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <h4 class="fw-bold mb-4"><span class="text-muted fw-light"></span>Hasil Informasi</h4>
+
+                        <!-- Container -->
+                        <div class="card">
+                            <div class="container my-2" style="padding: 25px;"> 
+                                <div class="row mb-5">
+                                    <div class="col-sm" style="display: flex; flex-direction: column;">
+                                        <div>
+                                            <h5><b>Nama: <span id="current-name">{{pred_output}}</span></b></h5>
+                                            <h5><b id="current-date"></b></h5>
+                                            <h5><b id="current-time"></b></h5>
+                                        </div>
+                                        <div>
+                                            <span class="border border-primary">
+                                                <img
+                                                    id="imageDaun"
+                                                    src="{{ url_for('static', filename=user_image.split('static/')[1]) }}"
+                                                    alt="User Image"
+                                                    style="width: 300px; height: 300px"
+                                                />
+                                            </span>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="col-sm">
+                                        <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
+                                            <h4><b>Perawatan:</b></h4>
+                                            <h6 style="text-align: justify;">
+                                                Yellowish adalah penyakit kuning pada tanaman cabai yang disebabkan oleh virus gemini. Gejala utama termasuk perubahan warna daun menjadi kuning dengan tulang daun yang memutih, daun mengeriting, dan ukuran daun mengecil. Meskipun pengendalian penyakit virus ini cukup menantang, beberapa metode mekanis dan kimiawi dapat membantu mengurangi dampaknya:
+                                                <br><br>
+                                                <b>Pengendalian Mekanis:</b>
+                                                <br>
+                                                <p style="margin: 0;">1. Penggunaan jaring serangga untuk melindungi tanaman dari kutu kebul (Bemisia tabaci) yang merupakan vektor utama virus.</p>
+                                                <p style="margin: 0;">2. Pengendalian manual dengan memusnahkan tanaman yang menunjukkan gejala penyakit kuning untuk mencegah penyebaran.</p>
+                                                <p style="margin: 0;">3. Penanaman tanaman perangkap atau tanaman penutup yang dapat mengurangi keberadaan kutu kebul di area tanam.</p>
+                                                <br>
+                                                <b>Pengendalian Kimiawi:</b>
+                                                <br>
+                                                <p style="margin: 0;">1. Aplikasi insektisida berbasis neonicotinoid atau piretroid untuk mengendalikan kutu kebul. Pemilihan pestisida yang tepat dapat membantu mengurangi infeksi virus.</p>
+                                                <p style="margin: 0;">2. Penggunaan pestisida sistemik untuk meningkatkan kekebalan tanaman terhadap infeksi virus dan mengurangi populasi vektor.</p>
+                                                <p style="margin: 0;">3. Rotasi dan pemilihan pestisida yang berbeda secara berkala untuk menghindari resistensi dan meningkatkan efektivitas pengendalian.</p>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <form id="formRiwayat" action="/save" method="POST">
+                                            <input type="hidden" name="name" value="" />
+                                            <input type="hidden" name="tanggal" value="" />
+                                            <input type="hidden" name="waktu" value="" />
+                                            <input type="hidden" name="gambar" value="" />
+                                            <button type="submit" class="btn btn-primary">Simpan Riwayat</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / Container -->
+                    </div>
+                    <!-- / Content wrapper -->
+                </div>
+                <!-- / Layout page -->
+            </div>
+            <!-- / Layout container -->
+        </div>
+        <!-- / Layout wrapper -->
+
+        <!-- Core JS -->
+        <script src="../static/assets/vendor/libs/jquery/jquery.js"></script>
+        <script src="../static/assets/vendor/libs/popper/popper.js"></script>
+        <script src="../static/assets/vendor/js/bootstrap.js"></script>
+        <script src="../static/assets/vendor/libs/node-waves/node-waves.js"></script>
+        <script src="../static/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.js"></script>
+        <script src="../static/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js"></script>
+        <script src="../static/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js"></script>
+        <script src="../static/assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
+        <script src="../static/assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
+        <script src="../static/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
+
+        <!-- Main JS -->
+        <script src="../static/assets/js/main.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const formRiwayat = document.getElementById("formRiwayat");
+                const imageDaun = document.getElementById("imageDaun");
+                
+                var today = new Date();
+                var dateOptions = { year: "numeric", month: "long", day: "numeric" };
+                var timeOptions = { hour: "2-digit", minute: "2-digit", second: "2-digit" };
+
+                var dateString = today.toLocaleDateString("id-ID", dateOptions); // Format date to Indonesian locale
+                var timeString = today.toLocaleTimeString("id-ID", timeOptions); // Format time to Indonesian locale
+
+                document.getElementById("current-date").textContent = "Tanggal: " + dateString;
+                document.getElementById("current-time").textContent = "Waktu: " + timeString;
+
+                formRiwayat.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+
+                    const formData = new FormData(formRiwayat);
+
+                    const iname = document.querySelector("input[name=name]");
+                    const itanggal = document.querySelector("input[name=tanggal]");
+                    const iwaktu = document.querySelector("input[name=waktu]");
+                    const igambar = document.querySelector("input[name=gambar]");
+
+                    const name = document.getElementById("current-name").textContent.trim();
+
+                    const response = await fetch(imageDaun.src);
+                    const blob = await response.blob();
+                    const reader = new FileReader();
+
+                    reader.readAsDataURL(blob);
+
+                    // Wait for reader to finish loading
+                    const base64Promise = new Promise((resolve, reject) => {
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.onerror = reject;
+                    });
+
+                    const base64data = await base64Promise;
+
+                    if (base64data) {
+                        iname.setAttribute("value", name);
+                        itanggal.setAttribute("value", dateString);
+                        iwaktu.setAttribute("value", timeString);
+                        igambar.setAttribute("value", base64data);
+
+                        formRiwayat.submit();
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
