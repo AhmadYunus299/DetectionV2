@@ -1,203 +1,335 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-navbar-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../static/assets/" data-template="vertical-menu-template">
+<html lang="en" class="light-style layout-navbar-fixed" dir="ltr" data-theme="theme-default"
+  data-assets-path="../static/assets/" data-template="vertical-menu-template">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>Leaf Detection</title>
-    <meta name="description" content="" />
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  <title>Leaf Detection</title>
+  <meta name="description" content="" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../static/assets/img/favicon/favicon.ico" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../static/assets/img/branding/leaf chili.png" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="../static/assets/vendor/fonts/materialdesignicons.css" />
-    <link rel="stylesheet" href="../static/assets/vendor/fonts/fontawesome.css" />
-    <!-- Menu waves for no-customizer fix -->
-    <link rel="stylesheet" href="../static/assets/vendor/libs/node-waves/node-waves.css" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="../static/assets/vendor/fonts/materialdesignicons.css" />
+  <link rel="stylesheet" href="../static/assets/vendor/fonts/fontawesome.css" />
 
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="../static/assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="../static/assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="../static/assets/css/demo.css" />
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="../static/assets/vendor/css/rtl/core.css" />
+  <link rel="stylesheet" href="../static/assets/vendor/css/rtl/theme-default.css" />
+  <link rel="stylesheet" href="../static/assets/css/demo.css" />
 
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../static/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="../static/assets/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="../static/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
-    <link rel="stylesheet" href="../static/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
-    <link rel="stylesheet" href="../static/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" />
-    <link rel="stylesheet" href="../static/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
+  <!-- Custom Styling -->
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+    }
 
-    <!-- Page CSS -->
+    h2 {
+      text-align: center;
+      color: #6c757d;
+    }
 
-    <!-- Helpers -->
-    <script src="../static/assets/vendor/js/helpers.js"></script>
+    .card {
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 25px;
+      background: #ffffff;
+    }
 
-    <!-- Template customizer & Theme config files -->
-    <script src="../static/assets/vendor/js/template-customizer.js"></script>
-    <script src="../static/assets/js/config.js"></script>
+    .info-box {
+      background: #f9f9fc;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .info-box h5 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #666cff;
+    }
+
+    .info-box p {
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      color: #444; /* lebih gelap biar jelas */
+    }
+
+    #imageDaun {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      margin-top: 10px;
+    }
+
+    .diagnosis-box {
+      background: #f1f0ff;
+      border-left: 5px solid #666cff;
+      padding: 15px;
+      border-radius: 12px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .diagnosis-box h4 {
+      margin: 0 0 8px;
+      color: #666cff;
+      font-weight: 700;
+    }
+
+    .info-section {
+      background-color: #f9fbfd;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 5px solid #666cff;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-section h4 {
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: #666cff;
+    }
+
+    .btn-primary {
+      background-color: #666cff;
+      border-color: #666cff;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 3px 8px rgba(111, 66, 193, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #5a32a3;
+      border-color: #5a32a3;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(111, 66, 193, 0.45);
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 14px;
+      margin-top: 15px;
+    }
+
+    table th,
+    table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    table th {
+      background: #666cff;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .row {
+        flex-direction: column;
+      }
+
+      #imageDaun {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
-        <div class="layout-container">
-            <!-- Layout container -->
-            <div class="layout-page">
-                <!-- Content wrapper -->
-                <div class="content-wrapper">
-                    <!-- Content -->
-                    <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold mb-4"><span class="text-muted fw-light"></span>Hasil Informasi</h4>
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <div class="layout-page">
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
 
-                        <!-- Container -->
-                        <div class="card">
-                          <div class="container my-2" style="padding: 25px;"> 
-                            <div class="row mb-5">
-                                <div class="col-sm" style="display: flex; flex-direction: column;">
-                                  <div>
-                                    <h5>
-                                      <b>Nama: <span id="current-name">{{pred_output}}</span></b>
-                                    </h5>
-                                    <h5><b id="current-date"></b></h5>
-                                    <h5><b id="current-time"></b></h5>
-                                  </div>
-                                  <div>
-                                      <span class="border border-primary">
-                                        <img
-                                          id="imageDaun"
-                                          src="{{ url_for('static', filename=user_image.split('static/')[1]) }}"
-                                          alt="User Image"
-                                          style="width: 300px; height: 300px"
-                                        />
-                                      </span>
-                                  </div>
-                                </div>
-                        
-                                <div class="col-sm">
-                                  <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
-                                    <h4><b>Perawatan:</b></h4>
-                                    <h6 style="text-align: justify;">
-                                      Penyakit leaf spot adalah salah satu penyakit terpenting yang menyerang cabai, penyakit ini distimulir oleh kondisi lembab dan suhu relatif tinggi. Penyakit bercak daun cabai dapat menyebabkan kerusakan sejak dari persemaian sampai tanaman cabai berbuah dan juga menyebabkan masalah serius terhadap perkembangan tanaman cabai. Serangan jamur ini berkembang pesat pada saat musim hujan dengan kondisi lahan yang lembab, sehingga perlu adanya pengaturan jarak tanam yang lebih lebar untuk mengatur kelembabannya.
-                                      <br><br>
-                                      Pengendalian secara mekanis dilakukan dengan mencabut atau memusnahkan tanaman yang terserang, melakukan rotasi tanaman, serta menanam bibit yang bebas penyakit pada lahan yang tidak terkontaminasi penyakit. Selain itu lakukan pula sanitasi kebun, penyiangan atau pembersihan gulma di sekitar tanaman untuk mengurangi kelembaban di areal sekitar penanaman. Keberadaan gulma ini juga bisa menjadi tanaman inang bagi hama penyakit.
-                                      <br><br>
-                                      Sedangkan pengendalian secara kimiawi adalah pengendalian dengan menggunakan zat kimia. Karena penyakit bercak daun cabai ini disebabkan oleh jamur atau cendawan, maka pengendaliannya dapat dilakukan dengan menyemprotkan fungisida.
-                                      <br><br>
-                                      Fungisida yang digunakan adalah fungisida sistemik dengan bahan aktif azoksistrobin dan difenokonazol.
-                                      <br><br>
-                                      Adapun dosisnya adalah 10 ml per 16 liter air atau sesuaikan saja dengan dosis yang tertera pada label kemasan.
-                                      <br><br>
-                                      Cara aplikasinya adalah dengan menyemprotkannya pada seluruh bagian tanaman baik itu tanaman yang sudah terinfeksi ataupun tanaman sehat.
-                                    </h6>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="d-flex align-items-center justify-content-center">
-                                  <form id="formRiwayat" action="/save" method="POST">
-                                    <input type="hidden" name="name" value="" />
-                                    <input type="hidden" name="tanggal" value="" />
-                                    <input type="hidden" name="waktu" value="" />
-                                    <input type="hidden" name="gambar" value="" />
-            
-                                    <button type="submit" class="btn btn-primary">Simpan Riwayat</button>
-                                  </form>
-                                </div>
-                              </div>
-                          </div>
-                        </div>
-                        <!-- / Container -->
-                    </div>
-                    <!-- / Content wrapper -->
+            <!-- Container -->
+            <div class="card">
+              <div class="row g-4 align-items-start">
+                <!-- Kolom kiri: info + gambar -->
+                <div class="col-md-4">
+                  <div class="info-box">
+                    <h5 id="current-name">{{pred_output}}</h5>
+                    <p id="current-date"></p>
+                    <p id="current-time"></p>
+                    <img id="imageDaun"
+                      src="{{ url_for('static', filename=user_image.split('static/')[1]) }}"
+                      alt="User Image" />
+                  </div>
                 </div>
-                <!-- / Layout page -->
+
+                <!-- Kolom kanan -->
+                <div class="col-md-8">
+                  <!-- Box hasil diagnosa -->
+                  <div class="diagnosis-box">
+                    <h4>🌿 Hasil Diagnosa</h4>
+                    <p><b>{{pred_output}}</b></p>
+                  </div>
+
+                  <!-- Info Perawatan -->
+                  <div class="info-section">
+                    <h4><b>Perawatan:</b></h4>
+                    <h6 style="text-align: justify;">
+                      <b>Gejala Penyakit Bercak Daun pada Cabai:</b><br>
+                      Gejala awal berupa bercak kecil pada daun berbentuk bulat, cokelat, dan kering. 
+                      Bercak meluas dengan warna keabu-abuan, tepi lebih gelap, kadang menyebabkan daun gugur 
+                      atau terdapat banyak bercak hingga berlubang. 
+                      Penyakit ini sering menyerang daun tua maupun bagian batang muda, bahkan kadang menyerang buah.<br><br>
+
+                      <b>Cara Mengatasi / Pengendalian:</b>
+                      <ul>
+                        <li>Cabut dan musnahkan tanaman yang terserang</li>
+                        <li>Lakukan rotasi tanaman untuk memutus siklus penyakit</li>
+                        <li>Gunakan bibit yang sehat dan bebas penyakit</li>
+                        <li>Atur jarak tanam agar sirkulasi udara baik</li>
+                        <li>Kurangi kelembaban dengan drainase baik</li>
+                        <li>Gunakan fungisida sesuai anjuran bila serangan parah</li>
+                      </ul>
+                    </h6>
+
+                    <h5 style="color:#666cff; margin-top:20px;"><b>Pengobatan Bercak Daun (SOP Lapangan)</b></h5>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Hari</th>
+                          <th>Jenis Perawatan</th>
+                          <th>Dosis</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Hari 1</td>
+                          <td>Kocor (200 L air)</td>
+                          <td>
+                            - Kalsium karbonat 2 kg<br>
+                            - Asam humat 500 gram<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Hari 2</td>
+                          <td>Kocor (16 L air)</td>
+                          <td>
+                            - Premino 1 tutup pertanki<br>
+                            - Perekat 2 Sendok<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Hari 3</td>
+                          <td>Spray (16 L air)</td>
+                          <td>
+                            - Fungisida Sagribat dosis 2 sendok<br>
+                            - Perekat 2 sendok<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Hari 4</td>
+                          <td>Spray (16 L air)</td>
+                          <td>
+                            - Demolish 2,5 sendok<br>
+                            - Vitaron 1 tutup<br>
+                            - Provit hijau 3 sendok<br>
+                            - Perekat 2 sendok
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tombol Simpan -->
+              <div class="row mt-4">
+                <div class="d-flex align-items-center justify-content-center">
+                  <form id="formRiwayat" action="/save" method="POST">
+                    <input type="hidden" name="name" value="" />
+                    <input type="hidden" name="tanggal" value="" />
+                    <input type="hidden" name="waktu" value="" />
+                    <input type="hidden" name="gambar" value="" />
+                    <button type="submit" class="btn btn-primary">Simpan Riwayat</button>
+                  </form>
+                </div>
+              </div>
             </div>
+            <!-- / Container -->
+          </div>
         </div>
-        <!-- / Layout container -->
+      </div>
     </div>
-    <!-- / Layout wrapper -->
+  </div>
 
-    <!-- Core JS -->
-    <script src="../static/assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../static/assets/vendor/libs/popper/popper.js"></script>
-    <script src="../static/assets/vendor/js/bootstrap.js"></script>
-    <script src="../static/assets/vendor/libs/node-waves/node-waves.js"></script>
-    <script src="../static/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.js"></script>
-    <script src="../static/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js"></script>
-    <script src="../static/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js"></script>
-    <script src="../static/assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js"></script>
-    <script src="../static/assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js"></script>
-    <script src="../static/assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
+  <!-- Core JS -->
+  <script src="../static/assets/vendor/libs/jquery/jquery.js"></script>
+  <script src="../static/assets/vendor/libs/popper/popper.js"></script>
+  <script src="../static/assets/vendor/js/bootstrap.js"></script>
 
-    <!-- Main JS -->
-    <script src="../static/assets/js/main.js"></script>
+  <!-- Script untuk tanggal & form -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const formRiwayat = document.getElementById("formRiwayat");
+      const imageDaun = document.getElementById("imageDaun");
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const formRiwayat = document.getElementById("formRiwayat");
-        var today = new Date();
-        var dateOptions = { year: "numeric", month: "long", day: "numeric" };
-        var timeOptions = {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        };
+      var today = new Date();
+      var dateOptions = { year: "numeric", month: "long", day: "numeric" };
+      var timeOptions = { hour: "2-digit", minute: "2-digit", second: "2-digit" };
 
-        var dateString = today.toLocaleDateString("id-ID", dateOptions); // Format date to Indonesian locale
-        var timeString = today.toLocaleTimeString("id-ID", timeOptions); // Format time to Indonesian locale
+      var dateString = today.toLocaleDateString("id-ID", dateOptions);
+      var timeString = today.toLocaleTimeString("id-ID", timeOptions);
 
-        document.getElementById("current-date").textContent =
-          "Tanggal: " + dateString;
-        document.getElementById("current-time").textContent =
-          "Waktu: " + timeString;
+      document.getElementById("current-date").textContent = "Tanggal: " + dateString;
+      document.getElementById("current-time").textContent = "Waktu: " + timeString;
 
-        formRiwayat.addEventListener("submit", async (e) => {
-          e.preventDefault();
+      formRiwayat.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-          const formData = new FormData(formRiwayat);
+        const iname = document.querySelector("input[name=name]");
+        const itanggal = document.querySelector("input[name=tanggal]");
+        const iwaktu = document.querySelector("input[name=waktu]");
+        const igambar = document.querySelector("input[name=gambar]");
 
-          const iname = document.querySelector("input[name=name]");
-          const itanggal = document.querySelector("input[name=tanggal]");
-          const iwaktu = document.querySelector("input[name=waktu]");
-          const igambar = document.querySelector("input[name=gambar]");
+        const name = document.getElementById("current-name").textContent.trim();
 
-          const name = document.getElementById("current-name");
-          const imgDaun = document.getElementById("imageDaun");
+        const response = await fetch(imageDaun.src);
+        const blob = await response.blob();
+        const reader = new FileReader();
 
-          try {
-            const response = await fetch(imgDaun.src);
-            const blob = await response.blob();
-            const reader = new FileReader();
+        reader.readAsDataURL(blob);
 
-            reader.readAsDataURL(blob);
-
-            // Wait for reader to finish loading
-            const base64Promise = new Promise((resolve, reject) => {
-              reader.onloadend = () => resolve(reader.result);
-              reader.onerror = reject;
-            });
-
-            const base64data = await base64Promise;
-
-            if (base64data) {
-              iname.value = name.textContent.trim();
-              itanggal.value = dateString;
-              iwaktu.value = timeString;
-              igambar.value = base64data;
-
-              formRiwayat.submit();
-            }
-          } catch (error) {
-            console.error('Error:', error);
-          }
+        const base64Promise = new Promise((resolve, reject) => {
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = reject;
         });
+
+        const base64data = await base64Promise;
+
+        if (base64data) {
+          iname.value = name;
+          itanggal.value = dateString;
+          iwaktu.value = timeString;
+          igambar.value = base64data;
+
+          formRiwayat.submit();
+        }
       });
-    </script>
+    });
+  </script>
 </body>
 </html>
